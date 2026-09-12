@@ -8,7 +8,7 @@ from pydantic import BaseModel
 import yt_dlp
 from PIL import Image
 from apscheduler.schedulers.background import BackgroundScheduler
-from moviepy.editor import VideoFileClip
+from moviepy import VideoFileClip
 
 app = FastAPI(title="Micro Transfer Backend Pro", version="2.0")
 
