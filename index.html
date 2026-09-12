@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <!-- ================= SEO & META TAGS ================= -->
+    <title>Micro Transfer - File Sharing, YouTube Downloader & File Converter</title>
+    <meta name="description"
+        content="Free online tool to share files quickly, download high-quality YouTube videos, and easily convert image, video, and audio formats.">
+    <meta name="keywords"
+        content="file sharing, youtube downloader, video converter, image converter, micro transfer">
+    <meta name="author" content="Micro Transfer App">
+
+    <!-- ================= OPEN GRAPH TAGS ================= -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Micro Transfer - File Sharing & Online Media Processing">
+    <meta property="og:description"
+        content="Platform supporting file sharing, YouTube video downloading, and fast file format conversion.">
+    <meta property="og:image" content="URL_LINK_THUMBNAIL_HERE">
+    <meta property="og:url" content="https://micro-transfer.onrender.com">
+
+    <!-- ================= TWITTER CARD TAGS ================= -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Micro Transfer - File Sharing & Media Processing">
+    <meta name="twitter:description"
+        content="Online tool to share files, download videos, and convert formats quickly.">
+    <meta name="twitter:image" content="URL_LINK_THUMBNAIL_HERE">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        .tab-content {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+
+    <link rel="canonical" href="https://micro-transfer.onrender.com">
+</head>
+
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white relative">
+
+    <!-- ================= TOAST NOTIFICATION UI ================= -->
+    <div id="toast"
+        class="fixed top-6 right-6 z-50 transform translate-x-full opacity-0 transition-all duration-300 ease-in-out bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-800 flex items-center gap-3">
+        <span id="toast-icon" class="text-xl">✨</span>
+        <div>
+            <h4 id="toast-title" class="text-xs font-bold text-slate-300">Notification</h4>
+            <p id="toast-message" class="text-sm font-medium text-slate-100">Notification message here</p>
+        </div>
+    </div>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/30">
+                    ⚡
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">MicroTransfer</span>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#features" class="hover:text-blue-600 transition">Features</a>
+                <a href="#transfer" class="hover:text-blue-600 transition">Tools</a>
+                <a href="#faq" class="hover:text-blue-600 transition">FAQ</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div>
+                <a href="#transfer"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-md shadow-blue-500/20 transition transform active:scale-95">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative pt-20 pb-16 overflow-hidden">
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-b from-blue-500/10 to-transparent rounded-full blur-3xl -z-10 pointer-events-none">
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight">
+                Fast & Secure <span class="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Digital Utilities</span> Ecosystem
+            </h1>
+
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-10">
+                Directly share files, download YouTube videos, and convert file formats with just a few clicks. 
+                Completely free, no registration required.
+            </p>
+        </div>
+
+        <!-- App Interface Preview Mockup with Tabs -->
+        <div id="transfer" class="max-w-5xl mx-auto mt-6 px-6">
+            <div class="bg-white p-4 md:p-8 rounded-3xl shadow-2xl border border-slate-200/85 relative">
+
+                <!-- Tab Switcher -->
+                <div class="flex justify-center mb-8 border-b border-slate-100 pb-4 gap-2 md:gap-4 overflow-x-auto">
+                    <button onclick="switchTab('transfer')" id="tab-transfer-btn"
+                        class="px-5 py-2.5 rounded-xl font-bold text-sm bg-blue-600 text-white shadow-md shadow-blue-600/20 transition">
+                        📁 Quick Transfer
+                    </button>
+                    <button onclick="switchTab('youtube')" id="tab-youtube-btn"
+                        class="px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                        📺 YouTube Downloader
+                    </button>
+                    <button onclick="switchTab('converter')" id="tab-converter-btn"
+                        class="px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                        🔄 File Converter
+                    </button>
+                </div>
+
+                <!-- TAB 1: FILE TRANSFER -->
+                <div id="tab-transfer" class="tab-content">
+                    <div id="drop-zone"
+                        class="border-2 border-dashed border-slate-300 hover:border-blue-500 bg-slate-50/50 rounded-2xl p-12 text-center cursor-pointer transition-all duration-300 group">
+                        <input type="file" id="file-input" class="hidden" multiple>
+                        <div
+                            class="w-16 h-16 bg-blue-50 group-hover:bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl transition shadow-sm">
+                            📁
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800 mb-2">Drag & drop files here or <span
+                                class="text-blue-600 underline">browse files</span></h2>
+                        <p class="text-xs text-slate-500">Supports images, videos, documents, and code with maximum transmission speed.</p>
+                    </div>
+
+                    <!-- Selected Files List -->
+                    <div id="file-list-container" class="mt-6 hidden">
+                        <h3 class="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Selected Files:</h3>
+                        <div id="file-list" class="space-y-2 max-h-48 overflow-y-auto pr-1"></div>
+
+                        <button onclick="startTransfer()" id="send-btn"
+                            class="w-full mt-6 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-blue-600/20 transition transform active:scale-95">
+                            Create Share Link
+                        </button>
+                    </div>
+
+                    <!-- Share Link Result -->
+                    <div id="transfer-result"
+                        class="mt-6 hidden bg-slate-900 text-slate-100 p-6 rounded-2xl text-center shadow-xl">
+                        <div
+                            class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mx-auto mb-3 text-xl">
+                            🔗
+                        </div>
+                        <h3 class="font-bold text-lg mb-1 text-emerald-400">Link is ready!</h3>
+                        <p class="text-xs text-slate-400 mb-4">Copy the link below to share with the recipient:</p>
+
+                        <div class="flex items-center gap-2 bg-slate-950 p-2 rounded-xl border border-slate-800 mb-4">
+                            <input type="text" readonly id="share-link"
+                                class="bg-transparent text-xs text-cyan-400 px-2 w-full outline-none font-mono">
+                            <button onclick="copyLink()"
+                                class="bg-slate-800 hover:bg-slate-700 text-xs text-white px-4 py-2 rounded-lg font-medium transition">Copy</button>
+                        </div>
+
+                        <button onclick="resetApp()" class="text-xs text-slate-400 hover:text-white underline">Send another file</button>
+                    </div>
+                </div>
+
+                <!-- TAB 2: YOUTUBE DOWNLOADER -->
+                <div id="tab-youtube" class="tab-content hidden py-6 text-center max-w-xl mx-auto">
+                    <div
+                        class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-sm">
+                        📺
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-800 mb-2">Download Video or Audio from YouTube</h2>
+                    <p class="text-xs text-slate-500 mb-6">Paste a valid YouTube video URL below to get high-quality download links.</p>
+
+                    <div class="flex flex-col sm:flex-row gap-3 mb-6">
+                        <input type="text" id="yt-url" placeholder="https://www.youtube.com/watch?v=..."
+                            class="flex-1 bg-slate-50 border border-slate-200 text-sm px-4 py-3.5 rounded-xl outline-none focus:border-red-500 transition">
+                        <button onclick="processYouTube()"
+                            class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3.5 rounded-xl text-sm shadow-md shadow-red-600/20 transition active:scale-95">
+                            Get Link
+                        </button>
+                    </div>
+
+                    <div id="yt-result" class="hidden bg-slate-50 border border-slate-200 p-4 rounded-2xl text-left">
+                        <h4 class="font-bold text-sm text-slate-800 mb-1" id="yt-title">Sample Video Title</h4>
+                        <p class="text-xs text-slate-500 mb-3">High-quality formats available:</p>
+                        <div class="flex gap-2">
+                            <a href="#" id="yt-download-mp4" target="_blank"
+                                class="bg-red-600 text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-red-700 transition">Download MP4</a>
+                            <a href="#" id="yt-download-mp3" target="_blank"
+                                class="bg-slate-800 text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-slate-700 transition">Download MP3</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: FILE CONVERTER -->
+                <div id="tab-converter" class="tab-content hidden py-6 text-center max-w-xl mx-auto">
+                    <div
+                        class="w-16 h-16 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-sm">
+                        🔄
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-800 mb-2">Convert File Formats</h2>
+                    <p class="text-xs text-slate-500 mb-6">Easily convert between image formats (PNG to JPG, WEBP) or documents.</p>
+
+                    <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl text-left space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Select file to convert:</label>
+                            <input type="file" id="convert-file-input"
+                                class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100 cursor-pointer">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Target Format:</label>
+                            <select id="target-format"
+                                class="w-full bg-white border border-slate-200 text-sm px-4 py-3 rounded-xl outline-none focus:border-amber-500">
+                                <option value="jpg">JPG (Image)</option>
+                                <option value="png">PNG (Image)</option>
+                                <option value="webp">WEBP (Optimized Image)</option>
+                                <option value="pdf">PDF (Document)</option>
+                            </select>
+                        </div>
+                        <button onclick="processConversion()"
+                            class="w-full py-3.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-sm shadow-md shadow-amber-600/20 transition active:scale-95">
+                            Start Conversion
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FEATURES SECTION ================= -->
+    <section id="features" class="py-20 max-w-6xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4">Key Features of Micro Transfer</h2>
+            <p class="text-slate-600">Fully optimized to deliver a smooth and completely secure utility experience.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
+                <div
+                    class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center font-bold mb-6 text-xl">
+                    ⚡</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Unlimited High Speed</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">Uses direct connection technology to transfer data at your maximum network speed.</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
+                <div
+                    class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center font-bold mb-6 text-xl">
+                    🔒</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Absolute Security</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">Files are securely encrypted and automatically deleted after the transfer session completes.</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
+                <div
+                    class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center font-bold mb-6 text-xl">
+                    🌐</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Diverse Utilities</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">Built-in YouTube video downloader and convenient file format conversion tools.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FAQ SECTION ================= -->
+    <section id="faq" class="py-20 max-w-4xl mx-auto px-6 border-t border-slate-100">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4">Frequently Asked Questions</h2>
+            <p class="text-slate-600">Quick answers to common questions about our online tool.</p>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+                <h3 class="text-lg font-bold text-slate-900 mb-2">Do I need to register an account to use Micro Transfer?</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">No. You can use all file sharing features, YouTube links, and conversions instantly.</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+                <h3 class="text-lg font-bold text-slate-900 mb-2">How do I download videos from YouTube using Micro Transfer?</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">Simply switch to the 'YouTube Downloader' tab, paste the video URL into the blank box, and click the button to fetch download links.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-white border-t border-slate-100 py-12">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">⚡
+                </div>
+                <span class="font-bold text-slate-900">MicroTransfer</span>
+            </div>
+            <p class="text-xs text-slate-500">© 2026 Micro Transfer. All rights reserved. Optimized for SEO & modern UI.</p>
+            <div class="flex gap-6 text-xs text-slate-600">
+                <a href="#" class="hover:text-blue-600 transition">Terms</a>
+                <a href="#" class="hover:text-blue-600 transition">Privacy</a>
+                <a href="#" class="hover:text-blue-600 transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        const API_BASE_URL = 'https://micro-transfer.onrender.com';
+
+        // Toast Elements
+        const toast = document.getElementById('toast');
+        const toastIcon = document.getElementById('toast-icon');
+        const toastTitle = document.getElementById('toast-title');
+        const toastMessage = document.getElementById('toast-message');
+        let toastTimeout = null;
+
+        function showToast(title, message, icon = "✨") {
+            clearTimeout(toastTimeout);
+            toastTitle.innerText = title;
+            toastMessage.innerText = message;
+            toastIcon.innerText = icon;
+
+            toast.classList.remove('translate-x-full', 'opacity-0');
+            toast.classList.add('translate-x-0', 'opacity-100');
+
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-x-0', 'opacity-100');
+                toast.classList.add('translate-x-full', 'opacity-0');
+            }, 3000);
+        }
+
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('tab-' + tabName).classList.remove('hidden');
+
+            document.getElementById('tab-transfer-btn').className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition";
+            document.getElementById('tab-youtube-btn').className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition";
+            document.getElementById('tab-converter-btn').className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition";
+
+            if (tabName === 'transfer') {
+                document.getElementById('tab-transfer-btn').className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-blue-600 text-white shadow-md shadow-blue-600/20 transition";
+            } else if (tabName === 'youtube') {
+                document.getElementById('tab-youtube-btn').className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-red-600 text-white shadow-md shadow-red-600/20 transition";
+            } else if (tabName === 'converter') {
+                document.getElementById('tab-converter-btn').className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-amber-600 text-white shadow-md shadow-amber-600/20 transition";
+            }
+        }
+
+        // File Transfer Logic
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const fileListContainer = document.getElementById('file-list-container');
+        const fileList = document.getElementById('file-list');
+        const transferResult = document.getElementById('transfer-result');
+        const sendBtn = document.getElementById('send-btn');
+        const shareLinkInput = document.getElementById('share-link');
+        let selectedFiles = [];
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('border-blue-500', 'bg-blue-50/35'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('border-blue-500', 'bg-blue-50/35'));
+        dropZone.addEventListener('drop', (e) => { e.preventDefault(); dropZone.classList.remove('border-blue-500', 'bg-blue-50/35'); handleFiles(e.dataTransfer.files); });
+
+        function handleFiles(files) {
+            for (let file of files) { selectedFiles.push(file); }
+            renderFileList();
+        }
+
+        function renderFileList() {
+            if (selectedFiles.length > 0) { fileListContainer.classList.remove('hidden'); dropZone.classList.add('hidden'); }
+            fileList.innerHTML = '';
+            selectedFiles.forEach((file, index) => {
+                let sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                let item = document.createElement('div');
+                item.className = "flex justify-between items-center bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-sm";
+                item.innerHTML = `<div class="truncate max-w-[280px]"><span class="font-semibold text-slate-800">${file.name}</span><span class="text-xs text-slate-400 ml-2">(${sizeMB} MB)</span></div><button onclick="removeFile(${index})" class="text-rose-500 hover:text-rose-700 text-xs font-semibold px-2.5 py-1 bg-rose-50 rounded-lg">Remove</button>`;
+                fileList.appendChild(item);
+            });
+        }
+
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            if (selectedFiles.length === 0) { fileListContainer.classList.add('hidden'); dropZone.classList.remove('hidden'); } else { renderFileList(); }
+        }
+
+        async function startTransfer() {
+            if (selectedFiles.length === 0) return;
+            sendBtn.innerText = "Uploading to system...";
+            sendBtn.disabled = true;
+            const file = selectedFiles[0];
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    fileListContainer.classList.add('hidden');
+                    transferResult.classList.remove('hidden');
+                    shareLinkInput.value = result.data.url;
+                    showToast("Success", "Share link created successfully!", "🚀");
+                } else {
+                    showToast("System Error", "An error occurred while uploading the file!", "⚠️");
+                }
+            } catch (error) {
+                showToast("Connection Error", "Cannot connect to the Python backend server!", "❌");
+            } finally {
+                sendBtn.innerText = "Create Share Link";
+                sendBtn.disabled = false;
+            }
+        }
+
+        function copyLink() {
+            shareLinkInput.select();
+            navigator.clipboard.writeText(shareLinkInput.value);
+            showToast("Copied", "Link copied to clipboard!", "📋");
+        }
+
+        function resetApp() {
+            selectedFiles = [];
+            transferResult.classList.add('hidden');
+            dropZone.classList.remove('hidden');
+            fileInput.value = '';
+            showToast("Refreshed", "Ready for a new transfer session.", "🔄");
+        }
+
+        // YouTube Downloader Logic
+        async function processYouTube() {
+            const ytUrl = document.getElementById('yt-url').value.trim();
+            if (!ytUrl) {
+                showToast("Missing Info", "Please enter a YouTube video URL!", "⚠️");
+                return;
+            }
+
+            showToast("Processing", "Analyzing video from YouTube...", "📺");
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/youtube`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: ytUrl })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.status === 'success') {
+                    document.getElementById('yt-title').innerText = result.title;
+                    const container = document.getElementById('yt-result');
+                    container.classList.remove('hidden');
+
+                    let linksHtml = '';
+                    result.formats.forEach((f, idx) => {
+                        linksHtml += `<a href="${f.url}" target="_blank" class="bg-red-600 text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-red-700 transition">Download (${f.resolution})</a>`;
+                    });
+
+                    const downloadArea = container.querySelector('.flex.gap-2');
+                    downloadArea.innerHTML = linksHtml;
+
+                    showToast("Success", "Successfully retrieved download links!", "🎉");
+                } else {
+                    showToast("Error", result.detail || "Unable to process this video.", "⚠️");
+                }
+            } catch (error) {
+                showToast("Connection Error", "Cannot connect to YouTube backend service.", "❌");
+            }
+        }
+
+        // File Converter Logic
+        async function processConversion() {
+            const convertInput = document.getElementById('convert-file-input');
+            const targetFormat = document.getElementById('target-format').value;
+
+            if (convertInput.files.length === 0) {
+                showToast("Missing File", "Please select a file to convert!", "⚠️");
+                return;
+            }
+
+            const file = convertInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('target_format', targetFormat);
+
+            showToast("Converting", `Processing file to ${targetFormat.toUpperCase()}...`, "🔄");
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/convert`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.status === 'success') {
+                    showToast("Success", "Conversion successful! Downloading...", "✅");
+                    window.open(result.download_url, '_blank');
+                } else {
+                    showToast("Error", result.detail || "Conversion failed.", "⚠️");
+                }
+            } catch (error) {
+                showToast("Connection Error", "Cannot connect to conversion backend.", "❌");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
