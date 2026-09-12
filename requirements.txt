@@ -4,3 +4,4 @@ yt-dlp
 Pillow
 moviepy
 APScheduler
+python-multipart
